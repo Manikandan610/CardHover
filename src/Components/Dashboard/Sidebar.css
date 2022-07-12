@@ -1,0 +1,162 @@
+.SideBar {
+  height: 100vh;
+  background: #ffffff;
+  position: fixed;
+}
+.ant-layout-sider,
+.ant-layout-sider-dark,
+.SideBar {
+  flex: 0 0 200px !important;
+  max-width: 70px !important;
+  min-width: 50px !important;
+  width: 200px !important;
+}
+.Logo img {
+  width: 70px;
+  height: 70px;
+}
+.midicon {
+  margin-top: 80px;
+}
+.midicon img {
+  width: 40px;
+  height: 40px;
+  /* margin-bottom: 10px; */
+}
+.ant-menu-item,
+.ant-menu-item-only-child {
+  padding-left: 10px !important;
+}
+.ant-menu-item,
+.ant-menu-item-only-child,
+.midicon3 {
+  padding-left: 10px !important;
+}
+.boticon {
+  width: 50px;
+  height: 50px;
+  margin: 30px 15px;
+}
+.boticon img {
+  margin-top: 20px;
+}
+.ant-layout-header {
+  background: lightblue !important;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: 70px !important;
+  padding: 0 20px !important;
+  margin-left: 70px;
+}
+.headright{
+  margin-left: 150px;
+  border-radius: 5px;
+}
+.ant-layout {
+  background: lightblue;
+  height: fit-content;
+}
+.lefthead {
+  font-weight: 700;
+  font-size: 28px;
+  margin-left: 20px;
+}
+.ant-btn-primary {
+  /* width: 150px !important; */
+  /* float: right; */
+  margin-top: 20px;
+  /* margin-left: 40px; */
+}
+.midhead {
+  margin-top: 5px;
+  width: 50px !important;
+}
+.ant-input-affix-wrapper {
+  margin-left: 120px !important;
+  width: 40% !important;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #2B78D4;
+  color: #2B78D4;
+}
+
+.contentGrid{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  row-gap: 0;
+  column-gap: 0ch;
+  margin-left: 70px;
+}
+.card1 {
+  border-radius: 20px;
+}
+.card1:hover{
+  border-style: solid;
+  border-width: 2px;
+  border-color: #2B78D4;
+}
+.ant-card-body {
+  padding: 9px !important;
+}
+.cardImg {
+  margin: 5px 5px;
+  width: 40px;
+  height: 40px;
+  background-color: #d1dcf4;
+  border-radius: 5px;
+}
+
+.cardTitile {
+  color: #002f68;
+  font-weight: 700;
+  font-style: bold;
+}
+.cardPara {
+  font-weight: 400;
+  font-size: 12px;
+  color: #5c83b1;
+}
+.cardSpan {
+  font-size: 14px;
+  color: #5c83b1;
+  font-weight: 400;
+}
+.card2Para{
+  color: #7d7d7d;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px !important;
+}
+.card2btn{
+  float: right;
+  border-radius: 10px;
+  margin: 10px 10px !important;
+}
+
+.card2{
+  display: none;
+}
+.site-card-border-less-wrapper{
+  display: block;
+}
+.gutter-box {
+  padding: 8px 0;
+  background: #00a0e9;
+}
+
+
+.ant-row{
+  /* height: 150px !important; */
+  margin:  0 !important;
+}
+
+.ant-menu-vertical, .ant-menu-item:not(:last-child), .ant-menu-vertical-left, .ant-menu-item:not(:last-child), .ant-menu-vertical-right, .ant-menu-item:not(:last-child), .ant-menu-inline, .ant-menu-item:not(:last-child){
+  margin-bottom: 15px !important;
+}
+/* .ant-menu-inline.ant-menu-root .ant-menu-item, .ant-menu-inline.ant-menu-root .ant-menu-submenu-title{
+  align-items: normal !important;
+} */
+.ant-layout-content{
+  margin: 15px 0px !important;
+}
