@@ -1,10 +1,10 @@
 import "./App.css";
-import Sidebar from "./Components/Dashboard/Sidebar.tsx";
+import Dashboard from "./Components/Dashboard/Dashboard.tsx";
 
 function App() {
   return (
     <div>
-      <Sidebar />
+      <Dashboard />
     </div>
   );
 }
