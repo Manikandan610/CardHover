@@ -41,7 +41,7 @@
   margin-top: 20px;
 }
 .ant-layout-header {
-  background: lightblue !important;
+  background: #F4F9FF !important;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -54,7 +54,7 @@
   border-radius: 5px;
 }
 .ant-layout {
-  background: lightblue;
+  background: #F4F9FF;
   height: fit-content;
 }
 .lefthead {
