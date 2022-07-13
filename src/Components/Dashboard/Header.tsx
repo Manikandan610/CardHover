@@ -30,12 +30,33 @@ const getBase64 = (img: RcFile, callback: (url: string) => void) => {
 
 function HeaderPart() {
     
+  //Mode Code
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const [employeeName, setEmployeeName] = useState('');
+    const [empdesignation, setEmployeeDesignation] = useState('');
+    const [employeedetails, setEmployeeDetails] = useState('');
+
     const showModal = () => {
       setIsModalVisible(true);
     };
     const handleOk = () => {
-      setIsModalVisible(false);
+      let payload =[{
+        name:employeeName,
+        designation:empdesignation,
+        employedetails:employeedetails
+      }]
+       console.log(payload);
+      //  useEffect(() => {
+      //   localStorage.setItem('items', JSON.stringify(payload));
+      // }, [payload]);
+      localStorage.setItem('Employee Name', employeeName);
+      localStorage.setItem('Employee Designation', empdesignation);
+      localStorage.setItem('Employee Details', employeedetails);
+      setEmployeeName('');
+      setEmployeeDesignation('');
+      setEmployeeDetails('');
+      setIsModalVisible(false); 
     };
     const handleCancel = () => {
       setIsModalVisible(false);
@@ -67,7 +88,8 @@ function HeaderPart() {
     );
 
     //TextArea Content
-    const [value, setValue] = useState('');
+    //const [value, setValue] = useState('');
+
 
   return (
     <Header>
@@ -81,7 +103,7 @@ function HeaderPart() {
         <Col span={6} className="midright">
             <Button type="primary" className="headright" onClick={showModal}>Create Workflow</Button>
 
-                <Modal title="Setup Employee" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <Modal title="Setup Employee" visible={isModalVisible} onCancel={handleCancel} footer={null}>
                     <Row>
                         <Col span={6}>
                             <Upload
@@ -96,21 +118,28 @@ function HeaderPart() {
                                 {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                             </Upload>
                         </Col>
-                        <Col span={8} className="col2para">
+                        <Col span={6} className="col2para">
                             <p>Employee Name</p>
                             <p>Designation</p>
                             <p>Employee Details</p>
                         </Col>
-                        <Col span={10} className="col3field">
-                            <Input placeholder="Basic usage" />
-                            <Input placeholder="Basic usage" />
+                        <Col span={12} className="col3field">
+                            <Input placeholder="Enter Title" className="inputText" onChange={(value:any)=>setEmployeeName(value.target.value)} />
+                            <Input placeholder="Enter Designation" className="inputText" onChange={(value:any)=>setEmployeeDesignation(value.target.value)} />
                             <TextArea
-                                value={value}
-                                onChange={e => setValue(e.target.value)}
-                                placeholder="Controlled autosize"
+                                // value={value}
+                                //  onChange={e => setValue(e.target.value)}
+                                placeholder="Employee Details"
                                 autoSize={{ minRows: 3, maxRows: 5 }}
+                                className="inputTextarea"
+                                onChange={(value:any)=>setEmployeeDetails(value.target.value)} 
                             />
                         </Col>
+                    </Row>
+                    <Row className="popupfooter">
+                    <Button type="primary" className="popupbtn" onClick={handleOk}>Save</Button>
+                    <Button className="popupdelbtn" onClick={handleCancel}>Cancel</Button>
+            
                     </Row>
                 </Modal>
         </Col>

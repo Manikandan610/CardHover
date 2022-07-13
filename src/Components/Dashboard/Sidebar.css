@@ -187,17 +187,81 @@
   background: transparent;
   border: none;
   outline: 0;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #2B78D4;
 }
-.col2para{
+.col2para p{
+  display: flex;
+  flex-direction: column;
   color: #002F68;
   font-weight: 400;
   font-size: 10px;
-  line-height: 22px;
-  padding-left: 30px;
+  line-height: 25px;
+  padding-left: 10px;
   font-family: 'Montserrat', sans-serif;
 }
-.col3field{
-  /* font-family: 'Montserrat', sans-serif;
-  line-height: 22px; */
+.ant-modal-header{
+  border-radius: 24px 24px 0 0;
+  border-bottom: none;
+}
+.ant-modal-content{
+  border-radius: 24px !important;
+}
+.ant-modal-title{
+  color: #A7B0C3 !important;
+}
+
+
+.ant-upload.ant-upload-select-picture-card {
+  border-radius: 12px !important;
+  width: 100px !important;
+  height: 110px !important;
+  background-color: #D1DCF4;
+}
+.popupfooter{
+  margin-top: 40px !important;
+}
+.popupbtn{
+  float: right;
+  border-radius: 10px;
+  width: 25%;
+  height: 35px !important;
+  margin: 10px 0px 0 220px !important;
+  background-color: #2B78D4;
+}
+.popupdelbtn{
+  border-radius: 5px;
+  width: 25%;
+  height: 35px !important;
+  font-weight: 500;
+  margin: 10px 0px 0 10px !important;
+  border-style: solid;
+  border-color: #2B78D4;
+  border-width: 1px;
+  color: #2B78D4;
+}
+.ant-modal-close-x {
+  width: 30px;
+  height: 30px;
+  border-radius: 95px;
+  background-color: #EFF1F8;
+  margin: 10px 10px;
+  color: #2B78D4;
+  line-height: 30px;
+}
+.inputText, .inputText:focus{
+  color: #002F68;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+}
+.ant-input:placeholder-shown{
+  font-size: 12px;
+  font-weight: 100;
+}
+.inputTextarea{
+  color: #002F68;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
 }
