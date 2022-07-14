@@ -106,6 +106,9 @@
 .ant-card-body {
   padding: 9px !important;
 }
+.ant-col .ant-col-4{
+  padding-left: 6px;
+}
 .cardImg {
   margin: 5px 5px;
   width: 40px;
@@ -119,6 +122,8 @@
   font-weight: 700;
   font-style: bold;
   font-family: 'Montserrat', sans-serif;
+  line-height: 15px;
+  margin-top: 10px;
 }
 .cardPara {
   font-weight: 400;
@@ -248,6 +253,7 @@
   color: #2B78D4;
   line-height: 30px;
 }
+
 .inputText, .inputText:focus{
   color: #002F68;
   font-weight: 700;
@@ -264,4 +270,33 @@
   font-weight: 400;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
+}
+.modalfield{
+  width: 500px !important;
+}
+.modalfield .ant-modal-close-x {
+  margin: 30px 28px;
+}
+.modalfield .cardTitile{
+  margin-top: 5px;
+}
+.modalfield .rowfield{
+  margin-top: 25px !important;
+}
+.modalfield .ant-input:placeholder-shown{
+  width: 230px;
+}
+.modalfield .col2para p{
+  padding-left: 60px;
+  line-height: 30px;
+}
+.modalfield .inputText, .inputText:focus{
+  width: 230px !important;
+  line-height: 30px;
+}
+.modalfield .popupbtn{
+  margin: 10px 0px 0 70px !important;
+}
+.modalfield .inputTextarea{
+  width: 230px !important;
 }

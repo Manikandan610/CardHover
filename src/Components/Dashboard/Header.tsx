@@ -5,6 +5,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import { AnyAaaaRecord } from 'dns';
 
 const { Header } = Layout;
 const { TextArea } = Input;
@@ -41,12 +42,17 @@ function HeaderPart() {
       setIsModalVisible(true);
     };
     const handleOk = () => {
-      let payload =[{
+      //console.log('hai ');
+      //let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+
+      let payload:any ={
         name:employeeName,
         designation:empdesignation,
         employedetails:employeedetails
-      }]
+      }
+      // employeeDetail.push(payload);
        console.log(payload);
+      //  localStorage.setItem('employeeDetail', JSON.stringify(employeeDetail));
       //  useEffect(() => {
       //   localStorage.setItem('items', JSON.stringify(payload));
       // }, [payload]);

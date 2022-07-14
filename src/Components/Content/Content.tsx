@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
-import { Col, Row } from "antd";
+import { Col, Row, Modal, Input } from "antd";
 import { Card, Button } from "antd";
 //import { SearchOutlined } from "@ant-design/icons";
 import "../Dashboard/Sidebar.css";
@@ -9,7 +9,7 @@ import "../Dashboard/Sidebar.css";
 
 
 const { Content } = Layout;
-
+const { TextArea } = Input;
 
 type cardDetailsProps = {
     title: string
@@ -25,6 +25,23 @@ const Content1 = (props:cardDetailsProps) => {
   const cardMouseEnter = () => {
     cardHover(current=>!current);
   }
+
+  //Card Modal
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false); 
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  //TextArea Content
+    const [value, setValue] = useState('');
 
     return (
 
@@ -51,7 +68,43 @@ const Content1 = (props:cardDetailsProps) => {
           <span className="card2Para">{props.card2paragraph}</span>
           <div className="btndiv">
             <Button className="deletebtn">Delete</Button>
-            <Button type="primary" className="card2btn">View Details</Button>
+            <Button type="primary" className="card2btn" onClick={showModal}>View Details</Button>
+
+              <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="modalfield">
+                      <Row>
+                        <Col span={4}>
+                          <img src={props.cardImage} className="cardImg" />
+                        </Col>
+                        <Col span={20}>
+                          <h3 className="cardTitile">{props.title}</h3>
+                          <p className="cardPara">{props.description}</p>
+                          <p className="cardSpan">{props.card1paragraph}</p>
+                        </Col>
+                      </Row>
+                      <Row className="rowfield">
+                          <Col span={9} className="col2para">
+                              <p>Employee Name</p>
+                              <p>Designation</p>
+                              <p>Employee Details</p>
+                          </Col>
+                          <Col span={15} className="col3field">
+                              <Input placeholder="Enter Title" className="inputText" />
+                              <Input placeholder="Enter Designation" className="inputText" />
+                              <TextArea
+                                  value={value}
+                                  onChange={e => setValue(e.target.value)}
+                                  placeholder="Employee Details"
+                                  autoSize={{ minRows: 3, maxRows: 5 }}
+                                  className="inputTextarea"
+                              />
+                          </Col>
+                      </Row>
+                      <Row className="popupfooter">
+                      <Button type="primary" className="popupbtn" onClick={handleOk}>Edit</Button>
+                      <Button className="popupdelbtn" onClick={handleCancel}>Cancel</Button>
+              
+                      </Row>
+              </Modal>
           </div>
       </div>
     </Card>
