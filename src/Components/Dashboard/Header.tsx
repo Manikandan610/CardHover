@@ -5,7 +5,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import { AnyAaaaRecord } from 'dns';
+//import { AnyAaaaRecord } from 'dns';
 
 const { Header } = Layout;
 const { TextArea } = Input;
@@ -45,7 +45,7 @@ function HeaderPart() {
       //console.log('hai ');
       //let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail')}`);
 
-      let payload:any ={
+      let payload ={
         name:employeeName,
         designation:empdesignation,
         employedetails:employeedetails
