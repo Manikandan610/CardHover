@@ -6,6 +6,7 @@
   background: #ffffff;
   position: fixed;
 }
+
 .ant-layout-sider,
 .ant-layout-sider-dark,
 .SideBar {
@@ -94,7 +95,7 @@
   grid-template-columns: 25% 25% 25% 25%;
   row-gap: 0;
   column-gap: 0ch;
-  margin: 0 50px 0 90px;
+  margin: 0 8vh 0 14vh;
   /* margin-left: 70px; */
 }
 .card1 {
@@ -112,16 +113,16 @@
   padding-left: 6px;
 }
 .cardImg {
-  margin: 5px 5px;
-  width: 40px;
-  height: 40px;
+  margin: 7px 15px;
+  width: 35px;
+  height: 35px;
   background-color: #d1dcf4;
   border-radius: 5px;
 }
 
 .cardTitile {
   color: #002f68;
-  font-weight: 700;
+  font-weight: 600;
   font-style: bold;
   font-family: 'Montserrat', sans-serif;
   line-height: 15px;
@@ -129,12 +130,12 @@
 }
 .cardPara {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   color: #5c83b1;
   font-family: 'Montserrat', sans-serif;
 }
 .cardSpan {
-  font-size: 14px;
+  font-size: 13px;
   color: #5c83b1;
   font-weight: 400;
   font-family: 'Montserrat', sans-serif;
@@ -305,30 +306,48 @@
 
 
 
-@media screen and (max-width: 1024px){
+@media screen and (min-width: 769px) and (max-width: 1024px){
 .contentGrid {
   grid-template-columns: 33.3% 33.3% 33.3%;
-  margin: 0 0px 0 68px;
+  margin: 0 0px 0 15vh;
 }
 .headright {
-    margin-right: 0px;
+    margin-right: 0vh;
 }
 .midicon {
-  margin-top: 55px;
+  margin-top: 10vh;
 }
 .boticon {
-  margin: 40px 15px;
+  margin: 5vh 15px;
 }
 }
 @media screen  and (max-width: 768px){
   .contentGrid {
     grid-template-columns: 50% 50%;
-    margin: 0 0px 0 68px;
+    margin: 0 0 0 17vh;
   }
   .ant-input-affix-wrapper {
-    margin-left: 75px !important;
+    margin-left: 18vh !important;
   }
   .ant-btn-primary {
     float: left;
 }
+.midicon {
+  margin-top: 10vh;
+}
+.boticon {
+  margin: 7vh 15px;
+}
+}
+@media only screen and (min-device-width: 1025px) and (max-device-width: 1440px) {
+  .contentGrid {
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 0 8vh 0 14vh;
+  }
+  .headright{
+    margin-right: 50px;
+  }
+  .boticon {
+    margin: 7vh 15px;
+  }
 }

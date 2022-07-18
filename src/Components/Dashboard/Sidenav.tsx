@@ -15,6 +15,7 @@ const { Sider } = Layout;
 function Sidenav() {
   return (
     <Sider className="SideBar">
+     
           <div className="Logo">
             <img src={L1} />
           </div>

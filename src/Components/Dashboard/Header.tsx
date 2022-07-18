@@ -43,22 +43,17 @@ function HeaderPart() {
     };
     const handleOk = () => {
       //console.log('hai ');
-      //let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+      let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
 
-      let payload ={
+      let payload: any ={
         name:employeeName,
         designation:empdesignation,
         employedetails:employeedetails
       }
-      // employeeDetail.push(payload);
-       console.log(payload);
-      //  localStorage.setItem('employeeDetail', JSON.stringify(employeeDetail));
-      //  useEffect(() => {
-      //   localStorage.setItem('items', JSON.stringify(payload));
-      // }, [payload]);
-      localStorage.setItem('Employee Name', employeeName);
-      localStorage.setItem('Employee Designation', empdesignation);
-      localStorage.setItem('Employee Details', employeedetails);
+      employeeDetail.push(payload);
+      //  console.log(payload);
+       localStorage.setItem('employeeDetail', JSON.stringify(employeeDetail));
+      
       setEmployeeName('');
       setEmployeeDesignation('');
       setEmployeeDetails('');
@@ -130,10 +125,10 @@ function HeaderPart() {
                             <p>Employee Details</p>
                         </Col>
                         <Col span={12} className="col3field">
-                            <Input placeholder="Enter Title" className="inputText" onChange={(value:any)=>setEmployeeName(value.target.value)} />
-                            <Input placeholder="Enter Designation" className="inputText" onChange={(value:any)=>setEmployeeDesignation(value.target.value)} />
+                            <Input placeholder="Enter Title" className="inputText" value={employeeName} onChange={(value:any)=>setEmployeeName(value.target.value)} />
+                            <Input placeholder="Enter Designation" className="inputText" value={empdesignation} onChange={(value:any)=>setEmployeeDesignation(value.target.value)} />
                             <TextArea
-                                // value={value}
+                                value={employeedetails}
                                 //  onChange={e => setValue(e.target.value)}
                                 placeholder="Employee Details"
                                 autoSize={{ minRows: 3, maxRows: 5 }}
