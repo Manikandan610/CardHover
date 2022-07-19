@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu } from "antd";
 import { Col, Row } from "antd";
@@ -10,15 +10,27 @@ import Sidenav from "./Sidenav.tsx";
 
 function Dashboard() {
 
+  const [cardData, setCardData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
+    setCardData(employeeDetail);
+    setLoading(false);
+  },[loading])
+
+  const refresh = ()=>{
+    setLoading(true);
+  }
   return (
     <div>
       <Layout>
         <Sidenav />
         <Layout>
-              <HeaderPart />
+              <HeaderPart refresh={refresh} />
 
               <div className="contentGrid">
-                {cardDetails.map((card: any) => {
+                {cardData.map((card: any) => {
                   //console.log(card.title);
                   return(
                         <Row>

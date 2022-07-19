@@ -103,30 +103,30 @@ const cardDetails = [
         card1paragraph:"Leave application for admin approval",
         card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
     },
-    {
-        id:14,
-        title: "GRN approval",
-        cardImage:"./images/icon2.png",
-        description: "WF_PO_PROCESSING_STD2",
-        card1paragraph:"Leave application for admin approval",
-        card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
-    },
-    {
-        id:15,
-        title: "ASN approval",
-        cardImage:"./images/icon3.png",
-        description: "WF_PO_PROCESSING_STD2",
-        card1paragraph:"Leave application for admin approval",
-        card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
-    },
-    {
-        id:16,
-        title: "Quotation approval",
-        cardImage:"./images/icon4.png",
-        description: "WF_PO_PROCESSING_STD2",
-        card1paragraph:"Leave application for admin approval",
-        card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
-    },
+    // {
+    //     id:14,
+    //     title: "GRN approval",
+    //     cardImage:"./images/icon2.png",
+    //     description: "WF_PO_PROCESSING_STD2",
+    //     card1paragraph:"Leave application for admin approval",
+    //     card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
+    // },
+    // {
+    //     id:15,
+    //     title: "ASN approval",
+    //     cardImage:"./images/icon3.png",
+    //     description: "WF_PO_PROCESSING_STD2",
+    //     card1paragraph:"Leave application for admin approval",
+    //     card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
+    // },
+    // {
+    //     id:16,
+    //     title: "Quotation approval",
+    //     cardImage:"./images/icon4.png",
+    //     description: "WF_PO_PROCESSING_STD2",
+    //     card1paragraph:"Leave application for admin approval",
+    //     card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
+    // },
 ];
 
 export default cardDetails;

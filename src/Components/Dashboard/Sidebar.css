@@ -2,19 +2,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .SideBar {
+  
   height: 100vh;
   background: #ffffff;
-  position: fixed;
+  width: 50vh;
 }
 
-.ant-layout-sider,
-.ant-layout-sider-dark,
-.SideBar {
-  flex: 0 0 200px !important;
-  max-width: 60px !important;
-  min-width: 35px !important;
-  width: 200px !important;
+.ant-layout-sider, .ant-layout-sider-dark, .SideBar {
+  position: fixed;
+  z-index: 1;
+  flex: 0 0 100px !important;
+  max-width: 100px !important;
+  min-width: 60px !important;
+  width: 61px !important;
 }
+.ant-layout-sider-zero-width-trigger {
+  background-color: #1890ff !important;
+  }
+ /* .ant-layout-sider-below .ant-layout-sider-dark  {
+
+  flex: 0 0 55px !important;
+  width: 55px !important;
+  max-width: 70px !important;
+  min-width: 63px !important;
+ 
+} */
+/* .ant-layout-sider-below, .ant-layout-sider-dark, .ant-layout-sider, .SideBar{
+  flex: 0 0 100px !important;
+  width: 55px !important;
+  max-width: 70px !important;
+  min-width: 63px !important;
+} */
+/* .ant-menu-dark.ant-menu-inline .ant-menu-item,
+.ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
+  width: 60px;
+  height: 70px;
+} */
 .Logo img {
   width: 60px;
   height: 60px;

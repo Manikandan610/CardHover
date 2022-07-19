@@ -14,7 +14,16 @@ const { Sider } = Layout;
 
 function Sidenav() {
   return (
-    <Sider className="SideBar">
+    <Sider className="SideBar" 
+    // breakpoint="lg"
+    // collapsedWidth="0"
+    // onBreakpoint={broken => {
+    //   console.log(broken);
+    // }}
+    // onCollapse={(collapsed, type) => {
+    //   console.log(collapsed, type);
+    // }}
+    >
      
           <div className="Logo">
             <img src={L1} />

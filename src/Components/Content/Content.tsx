@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
 import { Col, Row, Modal, Input } from "antd";
@@ -46,9 +46,11 @@ const Content1 = (props:cardDetailsProps) => {
     return (
 
 <Content style={{ margin: "30px 10px" }}>
+
   <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+  {/* {console.log(props)} */}
     <Col className="gutter-row" span={6}>
-      
+     
         <Card style={{ width: 290, height: 130 }} className="card1">
           <div className={isActive ? 'site-card-border-less-wrapper' : 'card2'} onMouseEnter={cardMouseEnter}>
             <Row>
@@ -88,10 +90,11 @@ const Content1 = (props:cardDetailsProps) => {
                               <p>Employee Details</p>
                           </Col>
                           <Col span={15} className="col3field">
-                              <Input placeholder="Enter Title" className="inputText" />
-                              <Input placeholder="Enter Designation" className="inputText" />
+                              <Input placeholder="Enter Title" value={props.title} className="inputText" />
+                              <Input placeholder="Enter Designation" value={props.description} className="inputText" />
                               <TextArea
-                                  value={value}
+                                  // value={value}
+                                  value={props.card1paragraph}
                                   onChange={e => setValue(e.target.value)}
                                   placeholder="Employee Details"
                                   autoSize={{ minRows: 3, maxRows: 5 }}

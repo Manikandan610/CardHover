@@ -5,6 +5,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import cardDetails from '../Content/CardData.tsx';
 //import { AnyAaaaRecord } from 'dns';
 
 const { Header } = Layout;
@@ -29,7 +30,7 @@ const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     return isJpgOrPng && isLt2M;
   };
 
-function HeaderPart() {
+function HeaderPart({refresh}) {
     
   //Mode Code
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -37,7 +38,7 @@ function HeaderPart() {
     const [employeeName, setEmployeeName] = useState('');
     const [empdesignation, setEmployeeDesignation] = useState('');
     const [employeedetails, setEmployeeDetails] = useState('');
-
+    
     const showModal = () => {
       setIsModalVisible(true);
     };
@@ -46,10 +47,12 @@ function HeaderPart() {
       let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
 
       let payload: any ={
-        name:employeeName,
-        designation:empdesignation,
-        employedetails:employeedetails
+        title:employeeName,
+        description:empdesignation,
+        card1paragraph:employeedetails,
+        card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
       }
+      
       employeeDetail.push(payload);
       //  console.log(payload);
        localStorage.setItem('employeeDetail', JSON.stringify(employeeDetail));
@@ -58,8 +61,13 @@ function HeaderPart() {
       setEmployeeDesignation('');
       setEmployeeDetails('');
       setIsModalVisible(false); 
+      refresh();
     };
+
     const handleCancel = () => {
+      setEmployeeName('');
+      setEmployeeDesignation('');
+      setEmployeeDetails('');
       setIsModalVisible(false);
     };
 
