@@ -5,7 +5,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import cardDetails from '../Content/CardData.tsx';
+//import cardDetails from '../Content/CardData.tsx';
 //import { AnyAaaaRecord } from 'dns';
 
 const { Header } = Layout;
@@ -21,7 +21,7 @@ const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const beforeUpload = (file: RcFile) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
-      message.error('You can only upload JPG/PNG file!');
+      message.error('You can only upload JPG/PNG/SVG file!');
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
@@ -44,17 +44,20 @@ function HeaderPart({refresh}) {
     };
     const handleOk = () => {
       //console.log('hai ');
+      
       let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
-
+      
       let payload: any ={
+        id: employeeDetail.length,
         title:employeeName,
         description:empdesignation,
         card1paragraph:employeedetails,
         card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
       }
-      
+      //console.log(payload.id);
       employeeDetail.push(payload);
       //  console.log(payload);
+      
        localStorage.setItem('employeeDetail', JSON.stringify(employeeDetail));
       
       setEmployeeName('');
@@ -133,8 +136,12 @@ function HeaderPart({refresh}) {
                             <p>Employee Details</p>
                         </Col>
                         <Col span={12} className="col3field">
-                            <Input placeholder="Enter Title" className="inputText" value={employeeName} onChange={(value:any)=>setEmployeeName(value.target.value)} />
-                            <Input placeholder="Enter Designation" className="inputText" value={empdesignation} onChange={(value:any)=>setEmployeeDesignation(value.target.value)} />
+                            <Input 
+                                placeholder="Enter Title" className="inputText" 
+                                value={employeeName} onChange={(value:any)=>setEmployeeName(value.target.value)} />
+                            <Input 
+                                placeholder="Enter Designation" className="inputText" 
+                                value={empdesignation} onChange={(value:any)=>setEmployeeDesignation(value.target.value)} />
                             <TextArea
                                 value={employeedetails}
                                 //  onChange={e => setValue(e.target.value)}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
 import { Col, Row, Modal, Input } from "antd";
@@ -12,6 +12,7 @@ const { Content } = Layout;
 const { TextArea } = Input;
 
 type cardDetailsProps = {
+    id: any
     title: string
     cardImage: string
     description: string
@@ -25,7 +26,30 @@ const Content1 = (props:cardDetailsProps) => {
   const cardMouseEnter = () => {
     cardHover(current=>!current);
   }
+ 
+  //delete card
+  const deleteCard = () =>{
+    //console.log("Hai");
+    // let items =JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+    // let item = items.filter((items:any) => items.id !== props.id);
+    // //localStorage.setItem("employeeDetail", JSON.stringify(item));
+    // if (item.length === 0) {
+    //   localStorage.removeItem("employeeDetail");
+    // }
+   //localStorage.removeItem("employeeDetail");
+  // event.preventDefault();
+        //setState({show: false});
+        let data = JSON.parse(`${localStorage.getItem('employeeDetail')}`);
 
+        for (let index = 0; index < data.length; index++) {
+          if( props.id === data[index].id){
+            localStorage.removeItem(data[index].id)
+        }
+      }
+      
+          //localStorage.setItem('employeeDetail', JSON.stringify(data));
+          
+  }
   //Card Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -33,7 +57,32 @@ const Content1 = (props:cardDetailsProps) => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
+  const handleEdit = () => {
+    // console.log('props',props?.title)
+    // //const selectedId = 1;
+    // let data= JSON.parse(`${(localStorage.getItem('employeeDetail')) || '[]'}`);
+    // const empd=Object.values(data);
+    // const result:any =empd.find((item:any) => item.name == props?.title);
+    // console.log('result',result);
+    // const id:any=result.id;
+    // localStorage.removeItem(id);
+    // result.designation="SDE 4";
+       // for(let i=0;i<empdetails.length;i++){
+    //   let emp1=JSON.parse(empdetails[i])
+    //   if (emp1.id == selectedId){
+    //     empdetails.splice(i,1)
+    //   }
+    // }    
+    // let payload: any ={
+    //   id:result.id,
+    //   name:result.name,
+    //   designation:result.designation,
+    //   det: result.det
+    // }
+    // //const result:any =empdetails.find((item:any) => item.id === selectedId);
+    // //console.log('result',result.name);
+    // data.push(payload);
+    // localStorage.setItem('employeeDetail', JSON.stringify(data));    
     setIsModalVisible(false); 
   };
   const handleCancel = () => {
@@ -44,11 +93,10 @@ const Content1 = (props:cardDetailsProps) => {
     const [value, setValue] = useState('');
 
     return (
-
+      
 <Content style={{ margin: "30px 10px" }}>
 
   <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-  {/* {console.log(props)} */}
     <Col className="gutter-row" span={6}>
      
         <Card style={{ width: 290, height: 130 }} className="card1">
@@ -61,6 +109,7 @@ const Content1 = (props:cardDetailsProps) => {
                 <h3 className="cardTitile">{props.title}</h3>
                 <p className="cardPara">{props.description}</p>
                 <p className="cardSpan">{props.card1paragraph}</p>
+                
               </Col>
             </Row>
           </div>
@@ -69,7 +118,8 @@ const Content1 = (props:cardDetailsProps) => {
       <div className={isActive ? 'card2' : 'site-card-border-less-wrapper'} onMouseLeave={cardMouseEnter}>
           <span className="card2Para">{props.card2paragraph}</span>
           <div className="btndiv">
-            <Button className="deletebtn">Delete</Button>
+          
+            <Button className="deletebtn" onClick={deleteCard}>Delete</Button>
             <Button type="primary" className="card2btn" onClick={showModal}>View Details</Button>
 
               <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="modalfield">
@@ -103,7 +153,7 @@ const Content1 = (props:cardDetailsProps) => {
                           </Col>
                       </Row>
                       <Row className="popupfooter">
-                      <Button type="primary" className="popupbtn" onClick={handleOk}>Edit</Button>
+                      <Button type="primary" className="popupbtn" onClick={handleEdit}>Edit</Button>
                       <Button className="popupdelbtn" onClick={handleCancel}>Cancel</Button>
               
                       </Row>

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import "antd/dist/antd.css";
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import { Col, Row } from "antd";
 import "./Sidebar.css";
 import Content from '../Content/Content.tsx';
-import cardDetails from '../Content/CardData.tsx';
+//import cardDetails from '../Content/CardData.tsx';
 import HeaderPart from "./Header.tsx";
 import Sidenav from "./Sidenav.tsx";
 
@@ -36,6 +36,7 @@ function Dashboard() {
                         <Row>
                           <Col span={6}>
                               <Content 
+                                  id={card.id}
                                   title={card.title}
                                   cardImage={card.cardImage}
                                   description={card.description}
