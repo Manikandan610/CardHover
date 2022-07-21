@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Layout, Row, Col, Input, Button, Modal } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import { getValue } from '@testing-library/user-event/dist/utils';
 //import cardDetails from '../Content/CardData.tsx';
 //import { AnyAaaaRecord } from 'dns';
 
@@ -38,6 +39,7 @@ function HeaderPart({refresh}) {
     const [employeeName, setEmployeeName] = useState('');
     const [empdesignation, setEmployeeDesignation] = useState('');
     const [employeedetails, setEmployeeDetails] = useState('');
+    const [employeeImage, setEmployeeImage] = useState('');
     
     const showModal = () => {
       setIsModalVisible(true);
@@ -46,10 +48,12 @@ function HeaderPart({refresh}) {
       //console.log('hai ');
       
       let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
+      // let calculatedLen = useMemo(()=>{employeeDetail.length},[employeeDetail.length]);
       
       let payload: any ={
         id: employeeDetail.length,
         title:employeeName,
+        cardImage: employeeImage,
         description:empdesignation,
         card1paragraph:employeedetails,
         card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
@@ -63,9 +67,11 @@ function HeaderPart({refresh}) {
       setEmployeeName('');
       setEmployeeDesignation('');
       setEmployeeDetails('');
+      setEmployeeImage('');
       setIsModalVisible(false); 
       refresh();
     };
+   
 
     const handleCancel = () => {
       setEmployeeName('');
@@ -79,6 +85,7 @@ function HeaderPart({refresh}) {
     const [imageUrl, setImageUrl] = useState<string>();
   
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+      
       if (info.file.status === 'uploading') {
         setLoading(true);
         return;
@@ -90,6 +97,7 @@ function HeaderPart({refresh}) {
           setImageUrl(url);
         });
       }
+      //setEmployeeImage(getValue.arguments.value);
     };
   
     const uploadButton = (
@@ -120,6 +128,7 @@ function HeaderPart({refresh}) {
                         <Col span={6}>
                             <Upload
                                 name="avatar"
+                                //value={employeeImage}
                                 listType="picture-card"
                                 className="avatar-uploader"
                                 showUploadList={false}
@@ -127,7 +136,7 @@ function HeaderPart({refresh}) {
                                 beforeUpload={beforeUpload}
                                 onChange={handleChange}
                                 >
-                                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                                {imageUrl ? <img src={imageUrl} defaultValue={employeeImage} onChange={(value:any)=>setEmployeeImage(imageUrl)} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                             </Upload>
                         </Col>
                         <Col span={6} className="col2para">

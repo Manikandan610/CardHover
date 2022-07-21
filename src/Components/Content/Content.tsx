@@ -5,6 +5,7 @@ import { Col, Row, Modal, Input } from "antd";
 import { Card, Button } from "antd";
 //import { SearchOutlined } from "@ant-design/icons";
 import "../Dashboard/Sidebar.css";
+import { updateCommaList } from "typescript";
 //import C1 from "../../assets/images/C1.png";
 
 
@@ -18,6 +19,7 @@ type cardDetailsProps = {
     description: string
     card1paragraph: string
     card2paragraph: string
+    refresh:any
 }
 
 const Content1 = (props:cardDetailsProps) => {
@@ -28,51 +30,67 @@ const Content1 = (props:cardDetailsProps) => {
   }
  
   //delete card
-  const deleteCard = () =>{
-    //console.log("Hai");
-    // let items =JSON.parse(`${localStorage.getItem('employeeDetail')}`);
-    // let item = items.filter((items:any) => items.id !== props.id);
-    // //localStorage.setItem("employeeDetail", JSON.stringify(item));
-    // if (item.length === 0) {
-    //   localStorage.removeItem("employeeDetail");
-    // }
-   //localStorage.removeItem("employeeDetail");
-  // event.preventDefault();
-        //setState({show: false});
-        let data = JSON.parse(`${localStorage.getItem('employeeDetail')}`);
-
-        for (let index = 0; index < data.length; index++) {
-          if( props.id === data[index].id){
-            localStorage.removeItem(data[index].id)
-        }
-      }
-      
-          //localStorage.setItem('employeeDetail', JSON.stringify(data));
+  const deleteCard = (id) =>{
+    // console.log("Hai",e);
+    let items =JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+    
+    // console.log(items.splice(id,id));
+    items.splice(id,1);
+    localStorage.setItem("employeeDetail", JSON.stringify(items));
+    // console.log(items);  
+    props.refresh();
           
   }
+  
   //Card Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
+    //console.log(props.id);
     setIsModalVisible(true);
   };
 
+    const [employeeName, setEmployeeName] = useState('');
+    const [empdesignation, setEmployeeDesignation] = useState('');
+    const [employeedetails, setEmployeeDetails] = useState('');
+
   const handleEdit = () => {
+    //console.log(localStorage.key[0]);
+    let data = JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+     data.map((value:any) =>{
+      if(props.id === value.id){
+        //console.log(employeeName);
+        // return{
+        //   ...value,
+           let payload: any ={
+            id: props.id,
+            title:employeeName,
+            description:empdesignation,
+            card1paragraph:employeedetails
+          }
+        data.push(payload);
+        localStorage.setItem('employeeDetail', JSON.stringify(data));
+      }
+      return value;
+    })
+    
+    localStorage.setItem('employeeDetail', JSON.stringify(data));
+    //this.props.updateList(datas);
     // console.log('props',props?.title)
     // //const selectedId = 1;
     // let data= JSON.parse(`${(localStorage.getItem('employeeDetail')) || '[]'}`);
     // const empd=Object.values(data);
-    // const result:any =empd.find((item:any) => item.name == props?.title);
+    // const result:any =empd.find((data:any) => data.id == props.id && data.title == props.title);
     // console.log('result',result);
     // const id:any=result.id;
     // localStorage.removeItem(id);
-    // result.designation="SDE 4";
-       // for(let i=0;i<empdetails.length;i++){
-    //   let emp1=JSON.parse(empdetails[i])
-    //   if (emp1.id == selectedId){
-    //     empdetails.splice(i,1)
-    //   }
-    // }    
+    // // result.designation="SDE 4";
+    // //    for(let i=0;i<employeeDetail.length;i++){
+    // //   let emp1=JSON.parse(empdetails[i])
+    // //   if (emp1.id == selectedId){
+    // //     empdetails.splice(i,1)
+    // //   }
+    // // }    
     // let payload: any ={
     //   id:result.id,
     //   name:result.name,
@@ -119,7 +137,7 @@ const Content1 = (props:cardDetailsProps) => {
           <span className="card2Para">{props.card2paragraph}</span>
           <div className="btndiv">
           
-            <Button className="deletebtn" onClick={deleteCard}>Delete</Button>
+            <Button className="deletebtn" onClick={()=>deleteCard(props.id)}>Delete</Button>
             <Button type="primary" className="card2btn" onClick={showModal}>View Details</Button>
 
               <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="modalfield">
@@ -140,15 +158,17 @@ const Content1 = (props:cardDetailsProps) => {
                               <p>Employee Details</p>
                           </Col>
                           <Col span={15} className="col3field">
-                              <Input placeholder="Enter Title" value={props.title} className="inputText" />
-                              <Input placeholder="Enter Designation" value={props.description} className="inputText" />
+                            <Input type="hidden" value={props.id} />
+                              <Input placeholder="Enter Title" value={employeeName} onChange={(value:any)=>setEmployeeName(value.target.value)} className="inputText" />
+                              <Input placeholder="Enter Designation" value={empdesignation} onChange={(value:any)=>setEmployeeDesignation(value.target.value)} className="inputText" />
                               <TextArea
                                   // value={value}
-                                  value={props.card1paragraph}
-                                  onChange={e => setValue(e.target.value)}
+                                  value={employeedetails}
+                                  //onChange={e => setValue(e.target.value)}
                                   placeholder="Employee Details"
                                   autoSize={{ minRows: 3, maxRows: 5 }}
                                   className="inputTextarea"
+                                  onChange={(value:any)=>setEmployeeDetails(value.target.value)}
                               />
                           </Col>
                       </Row>
@@ -160,7 +180,7 @@ const Content1 = (props:cardDetailsProps) => {
               </Modal>
           </div>
       </div>
-    </Card>
+        </Card>
       
     </Col>
 

@@ -36,6 +36,7 @@ function Dashboard() {
                         <Row>
                           <Col span={6}>
                               <Content 
+                                 refresh={refresh}
                                   id={card.id}
                                   title={card.title}
                                   cardImage={card.cardImage}
