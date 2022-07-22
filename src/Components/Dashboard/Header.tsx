@@ -5,7 +5,6 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import { getValue } from '@testing-library/user-event/dist/utils';
 //import cardDetails from '../Content/CardData.tsx';
 //import { AnyAaaaRecord } from 'dns';
 
@@ -39,11 +38,14 @@ function HeaderPart({refresh}) {
     const [employeeName, setEmployeeName] = useState('');
     const [empdesignation, setEmployeeDesignation] = useState('');
     const [employeedetails, setEmployeeDetails] = useState('');
-    const [employeeImage, setEmployeeImage] = useState('');
+    //const [employeeImage, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState<string>();
     
     const showModal = () => {
       setIsModalVisible(true);
     };
+
+    //Create Workflow Card
     const handleOk = () => {
       //console.log('hai ');
       let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
@@ -55,7 +57,7 @@ function HeaderPart({refresh}) {
       let payload: any ={
         id: generateId,
         title:employeeName,
-        cardImage: employeeImage,
+        cardImage: imageUrl,
         description:empdesignation,
         card1paragraph:employeedetails,
         card2paragraph: "This workflow is to enable an employee raise his leave request and get it approved it from him reporting manager"
@@ -69,7 +71,7 @@ function HeaderPart({refresh}) {
       setEmployeeName('');
       setEmployeeDesignation('');
       setEmployeeDetails('');
-      setEmployeeImage('');
+      setImageUrl('');
       setIsModalVisible(false); 
       refresh();
     };
@@ -84,7 +86,7 @@ function HeaderPart({refresh}) {
 
     //Upload Image Code2
     const [loading, setLoading] = useState(false);
-    const [imageUrl, setImageUrl] = useState<string>();
+    //const [imageUrl, setImageUrl] = useState<string>();
   
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
       
@@ -112,6 +114,22 @@ function HeaderPart({refresh}) {
     //TextArea Content
     //const [value, setValue] = useState('');
 
+//Search Cards
+
+const [search, setNewSearch] = useState("");
+
+  const handleSearchChange = (e) => {
+    setNewSearch(e.target.value);
+  };
+
+  let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
+
+  const filtered = !search
+  ? employeeDetail
+  : employeeDetail.filter((card) =>
+       card.title.toLowerCase().includes(search.toLowerCase())
+    );
+
 
   return (
     <Header>
@@ -120,7 +138,15 @@ function HeaderPart({refresh}) {
             <p className="lefthead">Workflow</p>
         </Col>
         <Col span={12} className="midhead">
-            <Input placeholder='Search a workflow' prefix={<SearchOutlined />}></Input>
+            <Input placeholder='Search a workflow' value={search} onChange={handleSearchChange} prefix={<SearchOutlined />}></Input>
+            {filtered.map((card:any) => {
+                return (
+                  // <p key={card.id}>
+                  //   {card.name} - {card.number}
+                  // </p>
+                  console.log(card.title)
+                );
+              })}
         </Col>
         <Col span={6} className="midright">
             <Button type="primary" className="headright" onClick={showModal}>Create Workflow</Button>
@@ -138,7 +164,7 @@ function HeaderPart({refresh}) {
                                 beforeUpload={beforeUpload}
                                 onChange={handleChange}
                                 >
-                                {imageUrl ? <img src={imageUrl} defaultValue={employeeImage} onChange={(value:any)=>setEmployeeImage(imageUrl)} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                             </Upload>
                         </Col>
                         <Col span={6} className="col2para">
