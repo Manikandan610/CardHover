@@ -46,12 +46,14 @@ function HeaderPart({refresh}) {
     };
     const handleOk = () => {
       //console.log('hai ');
-      
       let employeeDetail= JSON.parse(`${localStorage.getItem('employeeDetail') || '[]'}`);
-      // let calculatedLen = useMemo(()=>{employeeDetail.length},[employeeDetail.length]);
-      
+
+      //Generate Id from Data and Time
+      const date =new Date()
+      const generateId =date.getTime();
+
       let payload: any ={
-        id: employeeDetail.length,
+        id: generateId,
         title:employeeName,
         cardImage: employeeImage,
         description:empdesignation,

@@ -5,7 +5,6 @@ import { Col, Row, Modal, Input } from "antd";
 import { Card, Button } from "antd";
 //import { SearchOutlined } from "@ant-design/icons";
 import "../Dashboard/Sidebar.css";
-import { updateCommaList } from "typescript";
 //import C1 from "../../assets/images/C1.png";
 
 
@@ -30,16 +29,22 @@ const Content1 = (props:cardDetailsProps) => {
   }
  
   //delete card
-  const deleteCard = (id) =>{
-    // console.log("Hai",e);
-    let items =JSON.parse(`${localStorage.getItem('employeeDetail')}`);
-    
+  const deleteCard = () =>{
+    //console.log("Hai",id);
+    let employeeDetail =JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+    for(let index = 0; index<employeeDetail.length; index++){
+      if(props.id === employeeDetail[index].id){
+        employeeDetail = [
+          ...employeeDetail.slice(0, index),
+          ...employeeDetail.slice(index+1)
+        ];
+      }
+    }
     // console.log(items.splice(id,id));
-    items.splice(id,1);
-    localStorage.setItem("employeeDetail", JSON.stringify(items));
+    //items.splice(id,1);
+    localStorage.setItem("employeeDetail", JSON.stringify(employeeDetail));
     // console.log(items);  
-    props.refresh();
-          
+    props.refresh();        
   }
   
   //Card Modal
@@ -50,59 +55,34 @@ const Content1 = (props:cardDetailsProps) => {
     setIsModalVisible(true);
   };
 
-    const [employeeName, setEmployeeName] = useState('');
-    const [empdesignation, setEmployeeDesignation] = useState('');
-    const [employeedetails, setEmployeeDetails] = useState('');
-
+    const [employeeName, setEmployeeName] = useState(props.title);
+    const [empdesignation, setEmployeeDesignation] = useState(props.description);
+    const [employeedetails, setEmployeeDetails] = useState(props.card1paragraph);
+    //console.log(employeeName);
+    
   const handleEdit = () => {
     //console.log(localStorage.key[0]);
-    let data = JSON.parse(`${localStorage.getItem('employeeDetail')}`);
-     data.map((value:any) =>{
-      if(props.id === value.id){
-        //console.log(employeeName);
-        // return{
-        //   ...value,
-           let payload: any ={
-            id: props.id,
+    let employeeDetail = JSON.parse(`${localStorage.getItem('employeeDetail')}`);
+    let data= employeeDetail && employeeDetail.map((value:any) =>{
+      if(props.title === value.title && props.description === value.description && props.card1paragraph === value.card1paragraph){
+        // console.log("Props:",props.id);
+        // console.log("Value:",value.id);
+        return{
+            ...value,
             title:employeeName,
             description:empdesignation,
             card1paragraph:employeedetails
           }
-        data.push(payload);
-        localStorage.setItem('employeeDetail', JSON.stringify(data));
       }
       return value;
     })
     
     localStorage.setItem('employeeDetail', JSON.stringify(data));
-    //this.props.updateList(datas);
-    // console.log('props',props?.title)
-    // //const selectedId = 1;
-    // let data= JSON.parse(`${(localStorage.getItem('employeeDetail')) || '[]'}`);
-    // const empd=Object.values(data);
-    // const result:any =empd.find((data:any) => data.id == props.id && data.title == props.title);
-    // console.log('result',result);
-    // const id:any=result.id;
-    // localStorage.removeItem(id);
-    // // result.designation="SDE 4";
-    // //    for(let i=0;i<employeeDetail.length;i++){
-    // //   let emp1=JSON.parse(empdetails[i])
-    // //   if (emp1.id == selectedId){
-    // //     empdetails.splice(i,1)
-    // //   }
-    // // }    
-    // let payload: any ={
-    //   id:result.id,
-    //   name:result.name,
-    //   designation:result.designation,
-    //   det: result.det
-    // }
-    // //const result:any =empdetails.find((item:any) => item.id === selectedId);
-    // //console.log('result',result.name);
-    // data.push(payload);
-    // localStorage.setItem('employeeDetail', JSON.stringify(data));    
+    props.refresh();
     setIsModalVisible(false); 
   };
+
+
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -158,7 +138,7 @@ const Content1 = (props:cardDetailsProps) => {
                               <p>Employee Details</p>
                           </Col>
                           <Col span={15} className="col3field">
-                            <Input type="hidden" value={props.id} />
+                           
                               <Input placeholder="Enter Title" value={employeeName} onChange={(value:any)=>setEmployeeName(value.target.value)} className="inputText" />
                               <Input placeholder="Enter Designation" value={empdesignation} onChange={(value:any)=>setEmployeeDesignation(value.target.value)} className="inputText" />
                               <TextArea
