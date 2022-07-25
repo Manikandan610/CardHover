@@ -7,8 +7,10 @@ import Content from '../Content/Content.tsx';
 //import cardDetails from '../Content/CardData.tsx';
 import HeaderPart from "./Header.tsx";
 import Sidenav from "./Sidenav.tsx";
+import SearchBar from "./SearchBar.tsx";
 
-function Dashboard() {
+//Dashboard Main Function
+export default () => {
 
   const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,7 +30,7 @@ function Dashboard() {
         <Sidenav />
         <Layout>
               <HeaderPart refresh={refresh} />
-
+<SearchBar />
               <div className="contentGrid">
                 {cardData.map((card: any) => {
                   //console.log(card.title);
@@ -36,7 +38,7 @@ function Dashboard() {
                         <Row>
                           <Col span={6}>
                               <Content 
-                                 refresh={refresh}
+                                  refresh={refresh}
                                   id={card.id}
                                   title={card.title}
                                   cardImage={card.cardImage}
@@ -54,4 +56,4 @@ function Dashboard() {
     </div>
   );
 }
-export default Dashboard;
+// export default Dashboard;
